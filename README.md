@@ -2,7 +2,7 @@
 
 # igblast-docker-cwl
 
-This repository provides a [Common Workflow Language (CWL)](https://www.commonwl.org/) tool for running the [igblast](link) program. The tool is packaged in a Docker container, allowing it to run on any system with Docker or Singularity installed.
+This repository provides a [Common Workflow Language (CWL)](https://www.commonwl.org/) tool for running the [igblast](https://www.ncbi.nlm.nih.gov/igblast/) program. The tool is packaged in a Docker container, allowing it to run on any system with Docker or Singularity installed.
 
 ## Prerequisites
 
