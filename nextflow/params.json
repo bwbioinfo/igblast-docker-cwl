@@ -1,0 +1,9 @@
+{
+    "output_directory": "/path/to/output/directory",
+    "sample_id": "sample1",
+    "organism": "human",
+    "sequences": "README.md",
+    "j_database": "README.md",
+    "v_database": "README.md",
+    "d_database": "README.md"
+}

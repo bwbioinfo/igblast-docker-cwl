@@ -1,0 +1,10 @@
+{
+    "output_directory": "results",
+    "input_directory": "tests",
+    "sample_id": "sample1",
+    "organism": "human",
+    "sequences": "tests/test1",
+    "j_database": "tests/test2",
+    "v_database": "tests/test3",
+    "d_database": "tests/test4"
+}
