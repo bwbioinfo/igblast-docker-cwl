@@ -58,6 +58,7 @@ WORKDIR /opt
 
 # Add blast_dbs to path
 ENV PATH="/opt/blast_dbs:${PATH}"
+ENV IGDATA=/opt/igblast/bin
 
 # Test igblast
 RUN igblastn -h
