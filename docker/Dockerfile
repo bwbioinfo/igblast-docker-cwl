@@ -31,7 +31,6 @@ WORKDIR /opt
 
 # Create the data directory
 RUN mkdir data
-RUN mkdir blast_dbs
 
 WORKDIR /opt/data
 
@@ -47,21 +46,29 @@ edit_imgt_file.pl IG*D.fasta > imgt.Homo_sapiens.igD.f.orf && \
 edit_imgt_file.pl TR*V.fasta > imgt.Homo_sapiens.igV.f.orf && \
 edit_imgt_file.pl TR*J.fasta > imgt.Homo_sapiens.igJ.f.orf
 
-RUN makeblastdb -in imgt.Homo_sapiens.tcrD.f.orf -dbtype nucl -parse_seqids -out /opt/blast_dbs/Homo_sapiens_tcrD_db && \
-    makeblastdb -in imgt.Homo_sapiens.tcrV.f.orf -dbtype nucl -parse_seqids -out /opt/blast_dbs/Homo_sapiens_tcrV_db && \
-    makeblastdb -in imgt.Homo_sapiens.tcrJ.f.orf -dbtype nucl -parse_seqids -out /opt/blast_dbs/Homo_sapiens_tcrJ_db && \
-    makeblastdb -in imgt.Homo_sapiens.igD.f.orf -dbtype nucl -parse_seqids -out /opt/blast_dbs/Homo_sapiens_igD_db && \
-    makeblastdb -in imgt.Homo_sapiens.igV.f.orf -dbtype nucl -parse_seqids -out /opt/blast_dbs/Homo_sapiens_igV_db && \
-    makeblastdb -in imgt.Homo_sapiens.igJ.f.orf -dbtype nucl -parse_seqids -out /opt/blast_dbs/Homo_sapiens_igJ_db
+RUN mkdir /opt/igblast/database
 
-WORKDIR /opt
+RUN makeblastdb -in imgt.Homo_sapiens.tcrD.f.orf -dbtype nucl -parse_seqids -out /opt/igblast/database/Homo_sapiens_tcrD_db && \
+    makeblastdb -in imgt.Homo_sapiens.tcrV.f.orf -dbtype nucl -parse_seqids -out /opt/igblast/database/Homo_sapiens_tcrV_db && \
+    makeblastdb -in imgt.Homo_sapiens.tcrJ.f.orf -dbtype nucl -parse_seqids -out /opt/igblast/database/Homo_sapiens_tcrJ_db && \
+    makeblastdb -in imgt.Homo_sapiens.igD.f.orf -dbtype nucl -parse_seqids -out /opt/igblast/database/Homo_sapiens_igD_db && \
+    makeblastdb -in imgt.Homo_sapiens.igV.f.orf -dbtype nucl -parse_seqids -out /opt/igblast/database/Homo_sapiens_igV_db && \
+    makeblastdb -in imgt.Homo_sapiens.igJ.f.orf -dbtype nucl -parse_seqids -out /opt/igblast/database/Homo_sapiens_igJ_db
 
-# Add blast_dbs to path
-ENV PATH="/opt/blast_dbs:${PATH}"
-ENV IGDATA=/opt/igblast/bin
+WORKDIR /opt/igblast
 
 # Test igblast
 RUN igblastn -h
+
+COPY ./test_data/ /data/
+
+RUN igblastn \
+    -query /data/test_data.fasta \
+    -germline_db_V database/Homo_sapiens_igV_db \
+    -germline_db_J database/Homo_sapiens_igJ_db \
+    -germline_db_D database/Homo_sapiens_igD_db \
+    -organism human \
+    -show_translation
 
 # Set the run command for igblast
 CMD ["igblastn"]

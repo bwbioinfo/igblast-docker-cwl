@@ -12,7 +12,7 @@ process igblastn {
     input:
     // Takes a tuple with the sample ID, organism, sequence file, J gene database,
     // V gene database, and D gene database.
-    tuple val(sample_id), val(organism), file(sequences), file(j_database), file(v_database), file(d_database)
+    tuple val(sample_id), val(organism), file(sequences), val(j_database), val(v_database), val(d_database)
 
     // Defines the output parameter for the process.
     output:

@@ -1,9 +1,9 @@
 {
-    "output_directory": "/path/to/output/directory",
-    "sample_id": "sample1",
+    "output_directory": "results",
+    "sample_id": "test1",
     "organism": "human",
-    "sequences": "README.md",
-    "j_database": "README.md",
-    "v_database": "README.md",
-    "d_database": "README.md"
+    "sequences": "/data/test_data.fasta",
+    "j_database": "database/Homo_sapiens_igJ_db",
+    "v_database": "database/Homo_sapiens_igV_db",
+    "d_database": "database/Homo_sapiens_igD_db"
 }

@@ -6,9 +6,9 @@ workflow {
     // Define parameters from input JSON
     output_directory = params.output_directory
     organism = params.organism
-    j_database = file(params.j_database)
-    v_database = file(params.v_database)
-    d_database = file(params.d_database)
+    j_database = params.j_database
+    v_database = params.v_database
+    d_database = params.d_database
 
     // Define the input directory and create a channel with all sequence files
     input_directory = file(params.input_directory)
