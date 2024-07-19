@@ -24,7 +24,9 @@ process igblastn {
     script:
     """
     echo "Running IGBLAST for sample: ${sample_id} and organism: ${organism}" > ${sample_id}-${organism}.log
-    echo igblastn -germline_db_V ${v_database} \
+    scp -r /opt/igblast/internal_data .
+    scp -r /opt/igblast/database .
+    igblastn -germline_db_V ${v_database} \
         -germline_db_J ${j_database} \
         -germline_db_D ${d_database} \
         -organism ${organism} -query ${sequences} \

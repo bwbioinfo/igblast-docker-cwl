@@ -16,7 +16,7 @@ workflow {
         .fromPath("${input_directory}/*")
         .map { file -> 
             def sample_id = file.baseName
-            tuple(sample_id, file, organism, j_database, v_database, d_database)
+            tuple(sample_id, organism,file, j_database, v_database, d_database)
         }
 
     // Call the igblastn process with the sequence_files channel

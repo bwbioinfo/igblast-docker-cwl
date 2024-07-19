@@ -2,7 +2,7 @@
     "output_directory": "results",
     "sample_id": "test1",
     "organism": "human",
-    "sequences": "/data/test_data.fasta",
+    "input_directory": "test_data",
     "j_database": "database/Homo_sapiens_igJ_db",
     "v_database": "database/Homo_sapiens_igV_db",
     "d_database": "database/Homo_sapiens_igD_db"
